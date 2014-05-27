@@ -1,0 +1,20 @@
+%h1
+  Showing #{@patient.name}
+%hr
+  = @patient.phone_number
+  %br
+    = @patient.email
+    %br
+      = @patient.address1
+      %br
+        = @patient.address2
+        %br
+          = @patient.city
+          %br
+            = @patient.state
+            %br
+              = @patient.zip
+              %br
+
+= link_to 'Home', root_path
+%br

@@ -1,0 +1,12 @@
+.text-center
+  %strong Add Medications to: 
+  %br
+  #{@patient.name}
+  = form_for [@hospital, @patient, @med] do |f|
+    %br
+    = f.label :name
+    = f.select :name, options_for_select(Med::MEDS, @patient.meds), include_blank: '---Select---'
+    %br
+    = f.submit
+  %hr
+  = link_to "Cancel", hospital_patient_path(@hospital, @patient)

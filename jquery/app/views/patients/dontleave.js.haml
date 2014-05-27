@@ -1,0 +1,13 @@
+/ console.log("#{@patient.inspect}")
+/ $("tr.patient_#{ @patient.id }").remove()
+/ $("tr.patient_#{ @patient.id }").append(
+/ "#{@patient.name} helped at #{ @patient.updated_at.strftime('%l:%M%p') }<br>"
+/ );
+
+
+console.log("#{@patient.inspect}")
+$("tr.patient_#{ @patient.id }").remove()
+$("div.completed >  >  > ").append(
+"<tr>#{@patient.name} helped at #{ @patient.updated_at.strftime('%l:%M%p') }</tr>"
+);
+

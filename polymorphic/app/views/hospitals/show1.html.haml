@@ -1,0 +1,70 @@
+.text-center
+  %h1 
+    = @hospital.name
+    = @hospital.phone_number
+    %br
+  = link_to "Home", root_path
+%hr
+.text-center
+  %strong 
+  = link_to "New Patient", new_hospital_patient_path(@hospital) 
+%br
+.display
+  %table
+    - @patients_waiting.each do |patient|
+      %tr
+        %td
+          = link_to patient.name, hospital_patient_path(@hospital, patient) 
+          (#{patient.workflow_state})
+          - if patient.workflow_state == 'waiting'
+            = link_to "Checkup", checkup_hospital_patient_path(@hospital, patient), method: :patch
+            |
+            = link_to "Xray", xray_hospital_patient_path(@hospital, patient), method: :patch
+            |
+            = link_to "Surgery", surgery_hospital_patient_path(@hospital, patient), method: :patch
+            |
+            = link_to "Leave", leave_hospital_patient_path(@hospital, patient), method: :patch
+          - elsif patient.workflow_state == 'checkup'
+            = link_to "Xray", xray_hospital_patient_path(@hospital, patient), method: :patch
+            |
+            = link_to "Surgery", surgery_hospital_patient_path(@hospital, patient), method: :patch
+            |
+            = link_to "Pay", pay_hospital_patient_path(@hospital, patient), method: :patch
+            |
+          - elsif patient.workflow_state == 'xray'
+            = link_to "Checkup", checkup_hospital_patient_path(@hospital, patient), method: :patch
+            |
+            = link_to "Surgery", surgery_hospital_patient_path(@hospital, patient), method: :patch
+            |
+            = link_to "Pay", pay_hospital_patient_path(@hospital, patient), method: :patch
+            |
+          - elsif patient.workflow_state == 'surgery'
+            = link_to "Checkup", checkup_hospital_patient_path(@hospital, patient), method: :patch
+            |
+            = link_to "Xray", xray_hospital_patient_path(@hospital, patient), method: :patch
+            |
+            = link_to "Pay", pay_hospital_patient_path(@hospital, patient), method: :patch
+            |
+          - else patient.workflow_state == 'pay'
+            = link_to "Leave", leave_hospital_patient_path(@hospital, patient), method: :patch
+        %td
+          = patient.phone_number
+        %td
+          = link_to "Edit", edit_hospital_patient_path(@hospital, patient)
+        %td
+          = link_to "Delete", hospital_patient_path(@hospital, patient), method: :delete
+%hr
+.text-center
+  %strong 
+  = link_to "Add Doctor For Hospital", doctor_hospital_path(@hospital)
+%br
+.display
+  %table
+    - @hospital.doctors.each do |doctor|
+      %tr
+        %td
+          = doctor.name
+        %td
+          = link_to "Delete", delete_doctor_hospital_path(@hospital, doctor), method: :delete
+%hr
+= render 'past_patients'

@@ -1,0 +1,7 @@
+%tr{ class: "patient_#{patient.id}"}
+  %td 
+    = link_to patient.name, hospital_patient_path(@hospital, patient)
+    Completed at
+    = patient.updated_at.try(:strftime, "%l:%M%p")
+  %td
+    = link_to "Delete", hospital_patient_path(@hospital, patient), method: :delete

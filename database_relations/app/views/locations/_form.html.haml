@@ -1,0 +1,15 @@
+.center-text
+  = form_for @location do |f|
+    = render 'layouts/error_messages', object: @location
+    %br
+      =f.label :name
+      =f.text_field :name, placeholder: "Name"
+      %br
+      =f.label :phone_number
+      =f.text_field :phone_number, placeholder: "Phone Number"
+      %br
+      
+    =f.submit
+%hr
+.center-text
+  = link_to "Home", root_path

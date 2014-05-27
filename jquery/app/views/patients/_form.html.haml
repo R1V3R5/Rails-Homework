@@ -1,0 +1,21 @@
+.text-center
+  %h3 Add Patient: #{@hospital.name}
+  %br
+.patient
+  = form_for [@hospital, @patient] do |f|
+    = f.label :name
+    = f.text_field :name, placeholder: "Name" , class: "object-input"
+    %br
+    =f.label :phone_number
+    =f.text_field :phone_number, placeholder: "Phone Number"
+    %br
+    = f.label :email
+    = f.text_field :email, placeholder: "Email", class: "object-input"
+    %br
+    - @hospitals.each do |hospital|
+      = check_box_tag 'patient[hospital_ids][]', hospital.id, false, {id: "hospital_id_#{hospital.id}"}
+      = label_tag "hospital_id_#{hospital.id}", hospital.name
+      %br 
+    = f.submit "Submit", class: "submit"
+%hr
+= link_to "Cancel", hospital_path(@hospital)

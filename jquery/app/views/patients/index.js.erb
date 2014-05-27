@@ -1,0 +1,4 @@
+$("table.patients").html("");
+<% @patients.each do |patient| %>
+  $("table.patients").append("<%= escape_javascript(render(partial: 'patients/patient', locals: { patient: patient})) %>");
+<% end %>

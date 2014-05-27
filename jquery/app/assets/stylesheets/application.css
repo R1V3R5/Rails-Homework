@@ -1,0 +1,178 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+* {
+  text-decoration: none;
+}
+body {
+  background-color: black;
+}
+.container {
+  width: 1000px;
+  min-height:800px;
+  /*border: 1px solid black;*/
+  margin: 0 auto;
+  background-color: white;
+}
+.chead {
+  text-align: center;
+  text-shadow: 1px 1px 2px black, 0 0 1em black, 0 0 0.2em blue;
+  color: white;
+  font: 3.5em Georgia, "Bitstream Charter", "URW Bookman L", "Century Schoolbook L", serif;
+}
+.text-center {
+  text-align: center;
+  margin-top: 25px;
+}
+.paginate {
+  display: block;
+}
+.hospital {
+  text-align: center;
+  margin-top: 25px;
+}
+.patient {
+  /*margin: 0 auto;*/
+  margin-top: 25px;
+  margin-left: 320px;
+}
+.med {
+  height: 100px;
+  vertical-align: middle;
+  text-align: center;
+  margin-top: 25px;
+}
+.top {
+  margin-top: 25px;
+}
+.search {
+  text-align: center;
+}
+.button {
+  margin: 0 auto;
+  vertical-align: top;
+  width: 40%;
+}
+.display {
+  margin:0 auto;padding:0px;
+  width:80%;
+  box-shadow: 5px 5px 3px #888888;
+  border:1px solid #000000;
+  
+  -moz-border-radius-bottomleft:10px;
+  -webkit-border-bottom-left-radius:10px;
+  border-bottom-left-radius:10px;
+  
+  -moz-border-radius-bottomright:10px;
+  -webkit-border-bottom-right-radius:10px;
+  border-bottom-right-radius:10px;
+  
+  -moz-border-radius-topright:10px;
+  -webkit-border-top-right-radius:10px;
+  border-top-right-radius:10px;
+  
+  -moz-border-radius-topleft:10px;
+  -webkit-border-top-left-radius:10px;
+  border-top-left-radius:10px;
+}
+.display table{
+    border-collapse: collapse;
+        border-spacing: 0;
+  width:100%;
+  height:100%;
+  margin:0px;padding:0px;
+}
+.display tr:last-child td:last-child {
+  -moz-border-radius-bottomright:10px;
+  -webkit-border-bottom-right-radius:10px;
+  border-bottom-right-radius:10px;
+}
+.display table tr:first-child td:first-child {
+  -moz-border-radius-topleft:10px;
+  -webkit-border-top-left-radius:10px;
+  border-top-left-radius:10px;
+}
+.display table tr:first-child td:last-child {
+  -moz-border-radius-topright:10px;
+  -webkit-border-top-right-radius:10px;
+  border-top-right-radius:10px;
+}.display tr:last-child td:first-child{
+  -moz-border-radius-bottomleft:10px;
+  -webkit-border-bottom-left-radius:10px;
+  border-bottom-left-radius:10px;
+}
+.display tr:hover td{
+}
+.display tr:nth-child(odd){ background-color:#b2b2b2; }
+.display tr:nth-child(even)    { background-color:#ffffff; }
+.display td{
+  vertical-align:middle;
+  border:1px solid #000000;
+  border-width:0px 1px 1px 0px;
+  text-align:left;
+  padding:16px;
+  font-size:12px;
+  font-family:Comic Sans MS;
+  font-weight:normal;
+  color:#000000;
+}
+.display tr:last-child td{
+  border-width:0px 1px 0px 0px;
+}
+.display tr td:last-child{
+  border-width:0px 0px 1px 0px;
+}
+.display tr:last-child td:last-child{
+  border-width:0px 0px 0px 0px;
+}
+
+#new_patient #patient_name {
+  margin-left: 69px;
+  width: 200px;
+}
+#new_patient #patient_phone_number {
+  margin-left: 30px;
+  width: 200px;
+}
+#new_patient #patient_email {
+  margin-left: 71px;
+  width: 200px;
+}
+#new_med #med_name {
+  margin-left: 5px;
+  width: 100px;
+}
+#new_hospital #hospital_name {
+  margin-left: 5px;
+  width: 150px;
+}
+#new_hospital #hospital_phone_number {
+  margin-left: 5px;
+  width: 150px;
+}
+#new_doctor #doctor_name {
+  margin-left: 5px;
+  width: 150px;
+}
+.patient-hospitals {
+  text-align: left;
+}
+#patient_notes {
+  margin-top: 20px;
+  height: 140px;
+  width: 50%
+}
+
+

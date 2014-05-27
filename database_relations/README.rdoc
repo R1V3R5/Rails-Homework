@@ -1,0 +1,21 @@
+== README
+
+* After cloning this repository to your local machine cd into project directory.
+
+* I use .rvmrc which will specify and create a new gemset for this project.  
+
+* After the gemset has been created you will need to run a bundle update, this
+  is done in your terminal by typing
+    bundle update
+
+* The database adapter I have as default is sqlite3.  Any compatible rails databases
+  can be used, however if you chose a different database then you'll need to specify that in 
+  /config/database.yml.  Also add the new gem to the Gemfile and re run bundle install(or bundle update).
+
+* You'll then need to run
+  rake db:create db:migrate
+
+* After the database is setup and migrated you can then run
+  rails server
+
+

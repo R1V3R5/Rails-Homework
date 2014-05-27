@@ -1,0 +1,16 @@
+.header Hospitals
+.header1 
+  = link_to "New Location", new_location_path
+.content 
+  %ul
+    - @locations.each do |location|
+      %li
+        = link_to location.name, location_path(location)
+        |
+        = location.phone_number
+        | 
+        = link_to "Edit", edit_location_path(location)
+        |
+        = link_to "Delete", location_path(location), method: :delete
+    
+%hr  

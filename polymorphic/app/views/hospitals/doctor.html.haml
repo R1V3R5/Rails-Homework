@@ -1,0 +1,8 @@
+.text-center 
+  %h1 Add Doctor for Hospital
+  = form_for [@hospital, @doctor], url: add_doctor_hospital_path(@hospital) do |f|
+    = f.label :name
+    = f.text_field :name
+    = f.submit
+    %br
+  = link_to "Cancel", hospital_path(@hospital)

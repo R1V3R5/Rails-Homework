@@ -1,0 +1,11 @@
+%tr{ class: "patient_#{patient.id}"}
+  %td
+    = link_to patient.name, hospital_patient_path(@hospital, patient) 
+    (#{patient.workflow_state})
+    = patient.created_at.try(:strftime, "%l:%M%p")
+    |
+    = link_to "Edit", edit_hospital_patient_path(@hospital, patient)
+    |
+    = link_to "Delete", hospital_patient_path(@hospital, patient), method: :delete
+  %td
+    = display_links(patient)

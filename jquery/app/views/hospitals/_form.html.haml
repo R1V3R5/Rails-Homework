@@ -1,0 +1,21 @@
+.hospital
+  %h1 New Location
+  = form_for @hospital do |f|
+    =f.label :name
+    =f.text_field :name, placeholder: "Name" , class: "object-input"
+    %br
+    =f.label :phone_number
+    =f.text_field :phone_number, placeholder: "Phone Number"
+    %br
+    =f.submit "Submit", class: "submit"
+    %br
+    %hr
+  = link_to "Home", root_path
+
+
+
+
+
+
+
+    

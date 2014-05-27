@@ -1,0 +1,15 @@
+= form_for [@hospital, @patient] do |f|
+  = f.label :name
+  = f.text_field :name
+  %br
+  = f.label :phone_number
+  = f.text_field :phone_number
+  %br
+  - @hospitals.each do |hospital|
+    = check_box_tag 'patient[hospital_ids][]', hospital.id, @patient.hospitals.include?(hospital), {id: "hospital_id_#{hospital.id}"}
+    = label_tag "hospital_id_#{hospital.id}", hospital.name
+    %br
+  %br 
+  = f.submit
+%hr
+= link_to "Cancel", hospital_path(@hospital)

@@ -1,0 +1,5 @@
+console.log("<%= @patient.inspect %>")
+$("tr.patient_" + "<%= @patient.id %>").replaceWith(
+  "<%= escape_javascript(render(partial: 'patients/patient', locals: { patient: @patient})) %>"
+)
+

@@ -1,0 +1,45 @@
+.text-center  
+  = @patient.name
+  = @patient.phone_number
+%br
+%hr
+.text-center
+  %strong Current Medications
+  = link_to "Add Medication", new_hospital_patient_med_path(@hospital, @patient)
+.display
+  %table
+    - @patient.meds.each do |med|
+      %tr
+        %td
+          = med.name
+        %td
+          = link_to "Delete", hospital_patient_med_path(@hospital, @patient, med), method: :delete
+%hr
+.text-center
+  %strong Current Hospitals
+.display
+  %table
+    - @patient.hospitals.each do |hospital|
+      %tr
+        %td
+          = link_to hospital.name, hospital_path(hospital)
+        %td
+          = hospital.phone_number
+        / %td
+        /   = link_to "Remove", remove_from_hospital_path(@hospital, @patient), method: :delete
+%hr
+.text-center  
+  %strong Doctors:
+  = link_to "Add Doctor", doctor_hospital_patient_path(@hospital, @patient)
+.display
+  %table
+    - @patient.doctors.each do |doctor|
+      %tr
+        %td  
+          = doctor.name
+        %td
+          = link_to "Delete", delete_doctor_hospital_patient_path(@hospital, @patient, doctor), method: :delete      
+%hr    
+.text-center
+  = link_to "Cancel", hospital_path(@hospital)
+

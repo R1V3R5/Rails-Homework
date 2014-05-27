@@ -1,0 +1,57 @@
+= link_to 'New Patient', new_patient_path
+%hr
+%h4 Hospital Waiting Room
+%ul
+  - @patients_waiting.each do |patient|
+    %li{ class: "#{patient.workflow_state}"}
+      = patient.name 
+      (#{patient.workflow_state})
+      = patient.created_at.strftime("%l:%M%p")
+      = link_to "Show", patient_path(patient)    
+      |
+      = link_to "Edit", edit_patient_path(patient)
+      |
+      = link_to "Delete", patient_path(patient), method: :delete
+      |
+      - if patient.workflow_state == 'waiting'
+        = link_to "Doctor", doctor_patient_path(patient), method: :patch
+        |
+        = link_to "Xray", xray_patient_path(patient), method: :patch
+        |
+        = link_to "Surgery", surgery_patient_path(patient), method: :patch
+        |
+        = link_to "Leave", leave_patient_path(patient), method: :patch
+        |
+      - elsif patient.workflow_state == 'doctor'
+        = link_to "Xray", xray_patient_path(patient), method: :patch
+        |
+        = link_to "Surgery", surgery_patient_path(patient), method: :patch
+        |
+        = link_to "Pay", pay_patient_path(patient), method: :patch
+        |
+      - elsif patient.workflow_state == 'xray'
+        = link_to "Doctor", doctor_patient_path(patient), method: :patch
+        |
+        = link_to "Surgery", surgery_patient_path(patient), method: :patch
+        |
+        = link_to "Pay", pay_patient_path(patient), method: :patch        
+        |
+      - elsif patient.workflow_state == 'surgery'
+        = link_to "Doctor", doctor_patient_path(patient), method: :patch
+        |
+        = link_to "Xray", xray_patient_path(patient), method: :patch
+        |
+        = link_to "Pay", pay_patient_path(patient), method: :patch
+      - elsif patient.workflow_state == 'pay'
+        = link_to "Leave", leave_patient_path(patient), method: :patch
+      / - else patient.workflow_state == 'leave
+%hr
+%h4 Patients Completed
+%ul
+  - @patients_completed.each do |patient|
+    %li
+    = patient.name
+    completed at
+    = patient.updated_at.strftime("%l:%M%p")
+    = link_to "Show", patient_path(patient)
+    %br

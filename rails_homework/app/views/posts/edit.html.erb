@@ -1,0 +1,8 @@
+<h4>Edit Entry</h4>
+
+<%= form_for @post do |f| %>
+  <%= f.label :entry %>
+  <%= f.text_area :entry, placeholder: "Entry", :size => "30x10" %>
+  <br>
+  <%= f.submit %>
+<% end %>

@@ -1,0 +1,6 @@
+.text-center
+  Patients Completed
+  %ul
+  - @patients_completed.each do |patient|
+    %li
+      = link_to patient.name, hospital_patient_path(@hospital, patient)

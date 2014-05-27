@@ -1,0 +1,18 @@
+.med
+  %strong Add Medications to: 
+  #{@patient.name}
+  %br
+  = link_to "Cancel", hospital_patient_path(@hospital, @patient)
+  %br
+  %br
+  %br
+  %br
+  = form_for [@hospital, @patient, @med] do |f|
+    = render 'layouts/error_messages', object: @med
+    = f.label :name
+    = f.text_field :name, placeholder: "Name", class: "object-input"
+    %br
+    = f.submit "Submit", class: "submit" 
+    %hr
+
+

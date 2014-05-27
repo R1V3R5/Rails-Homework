@@ -1,0 +1,14 @@
+= form_for [@location, @patient, @med] do |f|
+  %br
+    =f.label :name
+    =f.select :name, options_for_select(Med::MEDS, @patient.meds), include_blank: '---Blank---'
+    %br
+      =f.label :cost
+      =f.text_field :cost, placeholder: "Cost"
+      %br
+        =f.label :description
+        =f.text_area :description, placeholder: "Description"
+
+  =f.submit
+%hr
+= link_to "Home", location_patient_path(@location, @patient)

@@ -1,0 +1,17 @@
+.chead HP Management
+.text-center
+  %h2
+    = link_to "New Location", new_hospital_path
+%hr
+.display
+  %table
+    - @hospitals.each do |hospital|
+      %tr
+        %td
+          = link_to hospital.name, hospital_path(hospital)
+        %td
+          = hospital.phone_number
+        %td
+          = link_to "Edit", edit_hospital_path(hospital)
+        %td
+          = link_to "Delete", hospital_path(hospital), method: :delete

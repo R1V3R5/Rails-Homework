@@ -1,0 +1,8 @@
+%h4 Search
+.display
+  %table
+    - @search_names.each do |search_name|
+      = render 'patients/patient', patient: search_name
+%br
+= link_to "Cancel", root_path
+  

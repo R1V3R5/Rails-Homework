@@ -1,0 +1,11 @@
+%li{ class: "#{patient.workflow_state}"}
+  = patient.name
+  (#{patient.workflow_state})
+  = patient.created_at.strftime("%l:%M%p")
+  = link_to "Show", hospital_patient_path(@hospital, patient)
+  |
+  = link_to "Edit", edit_hospital_patient_path(@hospital, patient)
+  |
+  = link_to "Delete", hospital_patient_path(@hospital, patient), method: :delete
+  |
+  / = display_links(patient)

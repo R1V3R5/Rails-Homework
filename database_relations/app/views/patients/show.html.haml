@@ -1,0 +1,24 @@
+.header Patient Information
+.header1
+  = link_to 'Home', location_path(@location)
+  %br
+  = link_to 'Add Medication', new_location_patient_med_path(@location, @patient)
+.content
+  .center-text
+    = @patient.name
+    %br
+    = @patient.phone_number
+    %br
+    = @patient.description
+  %hr
+.content
+  .center-text    
+    %h3 Current Medications
+    %ul
+    - @patient.meds.each do |med|
+      %li
+        = med.name
+        |
+        = med.cost
+        |
+        = link_to "Delete", location_patient_med_path(@location, @patient, med), method: :delete

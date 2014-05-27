@@ -1,0 +1,69 @@
+.text-center
+  %h1 
+    = @hospital.name
+    = @hospital.phone_number
+    %br
+  = link_to "Home", root_path
+  %br
+.search  
+  = render 'hospitals/search'
+
+ 
+%hr
+.text-center
+  %strong 
+  = link_to "New Patient", new_hospital_patient_path(@hospital) 
+%br
+.display
+  %table.patients
+    - @patients_waiting.each do |patient|
+      = render 'patients/patient', patient: patient
+.text-center
+  %strong 
+  = link_to "Add Doctor For Hospital", doctor_hospital_path(@hospital)
+%br
+.display
+  %table.completed
+    - @hospital.doctors.each do |doctor|
+      %tr
+        %td
+          = doctor.name
+          = '|'
+          = link_to "Delete", delete_doctor_hospital_path(@hospital, doctor), method: :delete
+.text-center
+  Patients Completed
+.completed
+  .display
+    %table
+      - @patients_completed.each do |patient|
+        = render 'patients/past_patients', patient: patient
+
+  / %li
+  /   %a.current{:href => "#"} 1
+  /   %a{:href => "#"} 2
+  /   %a{:href => "#"} 3
+  /   %a{:href => "#"} 4
+
+
+
+/ _slice(10) do |patient, patient_1, patient_2, patient_3, patient_4, patient_5, patient_6, patient_7, patient_8, patient_9|
+
+/       = render 'patient', patient: patient if patient
+/       = render 'patient', patient: patient_1 if patient_1
+/       = render 'patient', patient: patient_2 if patient_2
+/       = render 'patient', patient: patient_3 if patient_3
+/       = render 'patient', patient: patient_4 if patient_4
+/       = render 'patient', patient: patient_5 if patient_5
+/       = render 'patient', patient: patient_6 if patient_6
+/       = render 'patient', patient: patient_7 if patient_7
+/       = render 'patient', patient: patient_8 if patient_8
+/       = render 'patient', patient: patient_9 if patient_9
+/ %ul
+/   %l1
+/     %a{:href => "javascript:void(0);"} 1
+/   %li  
+/     %a{:href => "javascript:void(0);"} 2
+/   %li  
+/     %a{:href => "javascript:void(0);"} 3
+/   %li  
+/     %a{:href => "javascript:void(0);"} 4

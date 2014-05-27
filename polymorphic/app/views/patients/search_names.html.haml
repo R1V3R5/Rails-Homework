@@ -1,0 +1,7 @@
+%h4 Search
+%ul
+  - @search_names.each do |search_name|
+    = render 'hospitals/patient', patient: search_name
+%br
+= link_to "Cancel", root_path
+  

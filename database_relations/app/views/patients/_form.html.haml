@@ -1,0 +1,15 @@
+= form_for [@location, @patient] do |f|
+  = render 'layouts/error_messages', object: @patient
+  %br
+  =f.label :name
+  =f.text_field :name, placeholder: "Name"
+  %br
+  =f.label :phone_number
+  =f.text_field :phone_number, placeholder: "Phone Number"
+  %br
+  =f.label :description
+  =f.text_area :description, placeholder: "Description"
+  %br
+  =f.submit
+%hr
+= link_to "Home", @location_patients_path

@@ -1,0 +1,13 @@
+<h4>Blog Entries</h4>
+<%= link_to "New Entry", new_post_path %>
+<hr>
+<ul>
+  <% @blog_entry.each do |post| %>
+    <li style="width:100%;word-wrap: break-word;"><%= post.entry %>
+      <%=post.created_at.strftime("%l:%M%p") %>
+      <%= link_to "Show", post_path(post) %> | <%= link_to "Edit", edit_post_path(post) %> | <%= link_to "Delete", post_path(post), method: :delete %>
+    </li>
+    <hr>
+  <% end %>
+</ul>
+<hr>
