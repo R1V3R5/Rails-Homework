@@ -1,0 +1,17 @@
+<h1>Showing <%= @movie.title %></h1>
+<hr>
+<%= @movie.title %>
+<br>
+<%= @movie.release_year %>
+<br>
+<%= @movie.genre %>
+<br>
+<%= @movie.rating %>
+<br>
+<%= @movie.runtime %>
+<br>
+Favorite? <%= @movie.favorite %>
+<br>
+<%= @movie.actors %>
+<hr>
+<%= link_to 'Home', root_path %>

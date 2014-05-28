@@ -1,0 +1,12 @@
+<h1>DVD Collection</h1>
+
+<%= link_to 'Add DVD', new_movie_path %>
+<hr>
+
+<% @movies.each do |movie| %> 
+  <%= link_to "#{movie.title}", movie_path(movie) %>
+  <%= link_to 'Edit', edit_movie_path(movie) %>
+  |
+  <%= link_to 'Delete', movie_path(movie), method: :delete %>
+  <br>
+  <% end %>

@@ -1,0 +1,12 @@
+label {
+  width: 10px;
+  /*display: inline-block;*/
+}
+
+.notice {
+  color: rgb(87, 147, 253);
+}
+
+.error {
+  color: rgb(211,15,15);
+}

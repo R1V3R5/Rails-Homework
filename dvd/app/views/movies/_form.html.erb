@@ -1,0 +1,31 @@
+<%= form_for @movie do |f| %>
+   <%= render 'layouts/error_messages', object: @movie %>
+ <br>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+ <br>
+  <%= f.label :release_year %>
+  <%= f.select :release_year, options_for_select(Movie::RELEASE_YEAR, @movie.release_year), include_blank: '---Blank---' %>
+ <br>
+  <%= f.label :genre %>
+  <%= f.select :genre, options_for_select(Movie::GENRE, @movie.genre), include_blank: '---Blank---' %>
+ <br>
+  <%= f.label :rating %>
+  <%= f.select :rating, options_for_select(Movie::RATING, @movie.rating), include_blank: '---Blank---' %>
+ <br>
+  <%= f.label :runtime %>
+  <%= f.text_field :runtime %>
+ <br>
+  <%= f.label :actors %>
+  <%= f.text_area :actors %>
+ <br>
+  <%= f.label :favorite %>
+  <%= f.label :favorite, "Yes", value: true %>
+  <%= f.radio_button :favorite, true %>
+  <%= f.label :favorite, "No", value: false %>
+  <%= f.radio_button :favorite, false %>
+ <br>
+
+ <%= f.submit %>
+ <% end %>
+ <%= link_to 'Home', root_path %>
