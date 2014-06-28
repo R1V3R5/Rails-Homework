@@ -1,3 +1,0 @@
-$("li.submission_" + "<%= @submission.id %>").replaceWith(
-  "<%= escape_javascript(render(partial: 'submissions/submissions', locals: { submission: @submission})) %>"
-  )

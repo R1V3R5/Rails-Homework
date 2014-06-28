@@ -57996,3 +57996,421 @@ Processing by PatientsController#search_names as HTML
   Rendered hospitals/_patient.html.haml (0.3ms)
   Rendered patients/search_names.html.haml within layouts/application (2.5ms)
 Completed 200 OK in 9ms (Views: 7.0ms | ActiveRecord: 0.5ms)
+  [1m[36m (1.8ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.9ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateHospitals (20140426220741)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "hospitals" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "phone_number" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140426220741"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+Migrating to CreateLocations (20140426220748)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "locations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "hospital_id" integer, "patient_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140426220748"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+Migrating to CreatePatients (20140426220754)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "patients" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "phone_number" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140426220754"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+Migrating to CreateDoctors (20140427182150)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "doctors" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "cureable_id" integer, "cureable_type" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140427182150"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+Migrating to CreateMeds (20140428112111)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "meds" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "patient_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140428112111"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+Migrating to DeviseCreateUsers (20140428183501)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) DEFAULT '' NOT NULL, "encrypted_password" varchar(255) DEFAULT '' NOT NULL, "reset_password_token" varchar(255), "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar(255), "last_sign_in_ip" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.7ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140428183501"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+Migrating to AddWorkflowToPatients (20140428185108)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "patients" ADD "workflow_state" varchar(255)[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140428185108"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+Migrating to AddFieldToPatient (20140429024923)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "patients" ADD "email" varchar(255)[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140429024923"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+
+
+Started GET "/" for 127.0.0.1 at 2014-06-07 03:22:28 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by HomeController#index as HTML
+Completed 401 Unauthorized in 12ms
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2014-06-07 03:22:28 -0400
+Processing by Devise::SessionsController#new as HTML
+  Rendered /Users/joshuarivers/.rvm/gems/ruby-2.1.1/gems/devise-3.2.4/app/views/devise/shared/_links.erb (1.2ms)
+  Rendered /Users/joshuarivers/.rvm/gems/ruby-2.1.1/gems/devise-3.2.4/app/views/devise/sessions/new.html.erb within layouts/application (11.9ms)
+Completed 200 OK in 362ms (Views: 349.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2014-06-07 03:22:33 -0400
+Processing by Devise::RegistrationsController#new as HTML
+  Rendered /Users/joshuarivers/.rvm/gems/ruby-2.1.1/gems/devise-3.2.4/app/views/devise/shared/_links.erb (0.3ms)
+  Rendered /Users/joshuarivers/.rvm/gems/ruby-2.1.1/gems/devise-3.2.4/app/views/devise/registrations/new.html.erb within layouts/application (3.6ms)
+Completed 200 OK in 12ms (Views: 10.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2014-06-07 03:22:42 -0400
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"OsvlUw6AafSB5cLiIPoP7vq55m5cfjlxB6nw572AXh8=", "user"=>{"email"=>"joshua.rivers@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users"  WHERE "users"."email" = 'joshua.rivers@gmail.com' LIMIT 1[0m
+Binary data inserted for `string` type on column `encrypted_password`
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2014-06-07 07:22:42.150880"], ["email", "joshua.rivers@gmail.com"], ["encrypted_password", "$2a$10$/LSiOKfkXJ7Iz1QdjpskWujFBVxxTtq9ycl27VfZ7XEP87q87nxpq"], ["updated_at", "2014-06-07 07:22:42.150880"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+Binary data inserted for `string` type on column `current_sign_in_ip`
+Binary data inserted for `string` type on column `last_sign_in_ip`
+  [1m[36mSQL (0.2ms)[0m  [1mUPDATE "users" SET "current_sign_in_at" = ?, "current_sign_in_ip" = ?, "last_sign_in_at" = ?, "last_sign_in_ip" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "users"."id" = 1[0m  [["current_sign_in_at", "2014-06-07 07:22:42.154629"], ["current_sign_in_ip", "127.0.0.1"], ["last_sign_in_at", "2014-06-07 07:22:42.154629"], ["last_sign_in_ip", "127.0.0.1"], ["sign_in_count", 1], ["updated_at", "2014-06-07 07:22:42.155351"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+Redirected to http://localhost:3001/
+Completed 302 Found in 80ms (ActiveRecord: 2.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-06-07 03:22:42 -0400
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = 1  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mHospital Load (0.1ms)[0m  SELECT "hospitals".* FROM "hospitals"
+  Rendered home/index.html.haml within layouts/application (2.1ms)
+Completed 200 OK in 16ms (Views: 8.5ms | ActiveRecord: 0.2ms)
+  [1m[36m (12.4ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (13.1ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations`  ON `schema_migrations` (`version`) 
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to CreateHospitals (20140426220741)
+  [1m[35m (7.4ms)[0m  CREATE TABLE `hospitals` (`id` int(11) auto_increment PRIMARY KEY, `name` varchar(255), `phone_number` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20140426220741')
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+Migrating to CreateLocations (20140426220748)
+  [1m[35m (6.3ms)[0m  CREATE TABLE `locations` (`id` int(11) auto_increment PRIMARY KEY, `hospital_id` int(11), `patient_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20140426220748')
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+Migrating to CreatePatients (20140426220754)
+  [1m[35m (6.6ms)[0m  CREATE TABLE `patients` (`id` int(11) auto_increment PRIMARY KEY, `name` varchar(255), `phone_number` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20140426220754')
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+Migrating to CreateDoctors (20140427182150)
+  [1m[35m (6.3ms)[0m  CREATE TABLE `doctors` (`id` int(11) auto_increment PRIMARY KEY, `name` varchar(255), `cureable_id` int(11), `cureable_type` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20140427182150')
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+Migrating to CreateMeds (20140428112111)
+  [1m[35m (6.4ms)[0m  CREATE TABLE `meds` (`id` int(11) auto_increment PRIMARY KEY, `name` varchar(255), `patient_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20140428112111')
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+Migrating to DeviseCreateUsers (20140428183501)
+  [1m[35m (5.8ms)[0m  CREATE TABLE `users` (`id` int(11) auto_increment PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int(11) DEFAULT 0 NOT NULL, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (6.2ms)[0m  [1mCREATE UNIQUE INDEX `index_users_on_email`  ON `users` (`email`) [0m
+  [1m[35m (7.2ms)[0m  CREATE UNIQUE INDEX `index_users_on_reset_password_token`  ON `users` (`reset_password_token`) 
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20140428183501')
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+Migrating to AddWorkflowToPatients (20140428185108)
+  [1m[35m (10.5ms)[0m  ALTER TABLE `patients` ADD `workflow_state` varchar(255)
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20140428185108')
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+Migrating to AddFieldToPatient (20140429024923)
+  [1m[35m (10.1ms)[0m  ALTER TABLE `patients` ADD `email` varchar(255)
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20140429024923')
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+
+
+Started GET "/hospitals/new" for 127.0.0.1 at 2014-06-07 03:24:18 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by HospitalsController#new as HTML
+  Rendered hospitals/_form.html.haml (229.6ms)
+  Rendered hospitals/new.html.haml within layouts/application (232.9ms)
+Completed 200 OK in 290ms (Views: 277.6ms | ActiveRecord: 1.3ms)
+
+
+Started POST "/hospitals" for 127.0.0.1 at 2014-06-07 03:24:22 -0400
+Processing by HospitalsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"OsvlUw6AafSB5cLiIPoP7vq55m5cfjlxB6nw572AXh8=", "hospital"=>{"name"=>"1", "phone_number"=>""}, "commit"=>"Create Hospital"}
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `hospitals` (`created_at`, `name`, `phone_number`, `updated_at`) VALUES ('2014-06-07 07:24:22', '1', '', '2014-06-07 07:24:22')[0m
+  [1m[35m (5.7ms)[0m  COMMIT
+Redirected to http://localhost:3001/
+Completed 302 Found in 9ms (ActiveRecord: 6.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-06-07 03:24:22 -0400
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1  ORDER BY `users`.`id` ASC LIMIT 1[0m
+Completed 401 Unauthorized in 9ms
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2014-06-07 03:24:22 -0400
+Processing by Devise::SessionsController#new as HTML
+  Rendered /Users/joshuarivers/.rvm/gems/ruby-2.1.1/gems/devise-3.2.4/app/views/devise/shared/_links.erb (0.9ms)
+  Rendered /Users/joshuarivers/.rvm/gems/ruby-2.1.1/gems/devise-3.2.4/app/views/devise/sessions/new.html.erb within layouts/application (7.3ms)
+Completed 200 OK in 22ms (Views: 13.9ms | ActiveRecord: 1.1ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2014-06-07 03:24:33 -0400
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"OsvlUw6AafSB5cLiIPoP7vq55m5cfjlxB6nw572AXh8=", "user"=>{"email"=>"joshua.rivers@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Sign in"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`email` = 'joshua.rivers@gmail.com'  ORDER BY `users`.`id` ASC LIMIT 1
+Completed 401 Unauthorized in 3ms
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"OsvlUw6AafSB5cLiIPoP7vq55m5cfjlxB6nw572AXh8=", "user"=>{"email"=>"joshua.rivers@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Sign in"}
+  Rendered /Users/joshuarivers/.rvm/gems/ruby-2.1.1/gems/devise-3.2.4/app/views/devise/shared/_links.erb (0.2ms)
+  Rendered /Users/joshuarivers/.rvm/gems/ruby-2.1.1/gems/devise-3.2.4/app/views/devise/sessions/new.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 73ms (Views: 9.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2014-06-07 03:24:36 -0400
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"OsvlUw6AafSB5cLiIPoP7vq55m5cfjlxB6nw572AXh8=", "user"=>{"email"=>"joshua.rivers@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Sign in"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`email` = 'joshua.rivers@gmail.com'  ORDER BY `users`.`id` ASC LIMIT 1[0m
+Completed 401 Unauthorized in 1ms
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"OsvlUw6AafSB5cLiIPoP7vq55m5cfjlxB6nw572AXh8=", "user"=>{"email"=>"joshua.rivers@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Sign in"}
+  Rendered /Users/joshuarivers/.rvm/gems/ruby-2.1.1/gems/devise-3.2.4/app/views/devise/shared/_links.erb (0.2ms)
+  Rendered /Users/joshuarivers/.rvm/gems/ruby-2.1.1/gems/devise-3.2.4/app/views/devise/sessions/new.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 73ms (Views: 9.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2014-06-07 03:24:41 -0400
+Processing by Devise::RegistrationsController#new as HTML
+  Rendered /Users/joshuarivers/.rvm/gems/ruby-2.1.1/gems/devise-3.2.4/app/views/devise/shared/_links.erb (0.2ms)
+  Rendered /Users/joshuarivers/.rvm/gems/ruby-2.1.1/gems/devise-3.2.4/app/views/devise/registrations/new.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 11ms (Views: 10.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2014-06-07 03:24:46 -0400
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"OsvlUw6AafSB5cLiIPoP7vq55m5cfjlxB6nw572AXh8=", "user"=>{"email"=>"joshua.rivers@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM `users`  WHERE `users`.`email` = BINARY 'joshua.rivers@gmail.com' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  Rendered /Users/joshuarivers/.rvm/gems/ruby-2.1.1/gems/devise-3.2.4/app/views/devise/shared/_links.erb (0.2ms)
+  Rendered /Users/joshuarivers/.rvm/gems/ruby-2.1.1/gems/devise-3.2.4/app/views/devise/registrations/new.html.erb within layouts/application (3.4ms)
+Completed 200 OK in 84ms (Views: 9.9ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2014-06-07 03:24:51 -0400
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"OsvlUw6AafSB5cLiIPoP7vq55m5cfjlxB6nw572AXh8=", "user"=>{"email"=>"joshua.rivers@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM `users`  WHERE `users`.`email` = BINARY 'joshua.rivers@gmail.com' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `users` (`created_at`, `email`, `encrypted_password`, `updated_at`) VALUES ('2014-06-07 07:24:51', 'joshua.rivers@gmail.com', '$2a$10$Dr0vhAyUruBTHNhk5yPR4OyLf01EWQoIVN/skuW9FBsRweqFxM7h2', '2014-06-07 07:24:51')[0m
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  UPDATE `users` SET `current_sign_in_at` = '2014-06-07 07:24:51', `current_sign_in_ip` = '127.0.0.1', `last_sign_in_at` = '2014-06-07 07:24:51', `last_sign_in_ip` = '127.0.0.1', `sign_in_count` = 1, `updated_at` = '2014-06-07 07:24:51' WHERE `users`.`id` = 1
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3001/
+Completed 302 Found in 70ms (ActiveRecord: 1.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-06-07 03:24:51 -0400
+Processing by HomeController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1  ORDER BY `users`.`id` ASC LIMIT 1
+  [1m[36mHospital Load (0.1ms)[0m  [1mSELECT `hospitals`.* FROM `hospitals`[0m
+  Rendered home/index.html.haml within layouts/application (2.4ms)
+Completed 200 OK in 10ms (Views: 8.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/hospitals/1" for 127.0.0.1 at 2014-06-07 03:25:01 -0400
+Processing by HospitalsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mHospital Load (0.3ms)[0m  SELECT  `hospitals`.* FROM `hospitals`  WHERE `hospitals`.`id` = 1 LIMIT 1
+  Rendered hospitals/_search.html.haml (1.1ms)
+  [1m[36mPatient Load (0.2ms)[0m  [1mSELECT `patients`.* FROM `patients` INNER JOIN `locations` ON `patients`.`id` = `locations`.`patient_id` WHERE `locations`.`hospital_id` = 1 AND (`patients`.`workflow_state` != 'leave')[0m
+  [1m[35mDoctor Load (0.2ms)[0m  SELECT `doctors`.* FROM `doctors`  WHERE `doctors`.`cureable_id` = 1 AND `doctors`.`cureable_type` = 'Hospital'
+  [1m[36mPatient Load (0.2ms)[0m  [1mSELECT `patients`.* FROM `patients` INNER JOIN `locations` ON `patients`.`id` = `locations`.`patient_id` WHERE `locations`.`hospital_id` = 1 AND `patients`.`workflow_state` = 'leave'[0m
+  Rendered hospitals/_past_patients.html.haml (1.4ms)
+  Rendered hospitals/show.html.haml within layouts/application (42.1ms)
+Completed 200 OK in 67ms (Views: 45.8ms | ActiveRecord: 4.8ms)
+
+
+Started GET "/hospitals/1/patients/new" for 127.0.0.1 at 2014-06-07 03:25:02 -0400
+Processing by PatientsController#new as HTML
+  Parameters: {"hospital_id"=>"1"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1  ORDER BY `users`.`id` ASC LIMIT 1
+  [1m[36mHospital Load (0.2ms)[0m  [1mSELECT  `hospitals`.* FROM `hospitals`  WHERE `hospitals`.`id` = 1 LIMIT 1[0m
+  [1m[35mHospital Load (0.2ms)[0m  SELECT `hospitals`.* FROM `hospitals`
+  Rendered patients/_form.html.haml (7.1ms)
+  Rendered patients/new.html.haml within layouts/application (8.5ms)
+Completed 200 OK in 18ms (Views: 14.8ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/hospitals/1/patients" for 127.0.0.1 at 2014-06-07 03:25:14 -0400
+Processing by PatientsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"OsvlUw6AafSB5cLiIPoP7vq55m5cfjlxB6nw572AXh8=", "patient"=>{"name"=>"Joshua", "phone_number"=>"1", "email"=>"joshua.rivers@gmail.com", "hospital_ids"=>["1"]}, "commit"=>"Create Patient", "hospital_id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1  ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35mHospital Load (0.1ms)[0m  SELECT  `hospitals`.* FROM `hospitals`  WHERE `hospitals`.`id` = 1 LIMIT 1
+  [1m[36mHospital Load (0.1ms)[0m  [1mSELECT  `hospitals`.* FROM `hospitals`  WHERE `hospitals`.`id` = 1 LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  Rendered patient_mailer/new_patient_email.html.haml (0.9ms)
+
+PatientMailer#new_patient_email: processed outbound mail in 10.8ms
+
+Sent mail to joshua.rivers@gmail.com (10.6ms)
+Date: Sat, 07 Jun 2014 03:25:14 -0400
+From: from@example.com
+To: joshua.rivers@gmail.com
+Message-ID: <5392be5a611c0_224e815854041417@Joshuas-MacBook-Pro.local.mail>
+Subject: You have joined the Hospital Conglomerate
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Hey
+Joshua
+You are now a registered member of the Hospitals Conglomerate, Inc.  Please wait...
+Thanks,
+Joshua
+
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO `patients` (`created_at`, `email`, `name`, `phone_number`, `updated_at`, `workflow_state`) VALUES ('2014-06-07 07:25:14', 'joshua.rivers@gmail.com', 'Joshua', '1', '2014-06-07 07:25:14', 'waiting')[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO `locations` (`created_at`, `hospital_id`, `patient_id`, `updated_at`) VALUES ('2014-06-07 07:25:14', 1, 1, '2014-06-07 07:25:14')
+  [1m[36m (5.6ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3001/hospitals/1
+Completed 302 Found in 48ms (ActiveRecord: 7.3ms)
+
+
+Started GET "/hospitals/1" for 127.0.0.1 at 2014-06-07 03:25:14 -0400
+Processing by HospitalsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mHospital Load (0.3ms)[0m  SELECT  `hospitals`.* FROM `hospitals`  WHERE `hospitals`.`id` = 1 LIMIT 1
+  Rendered hospitals/_search.html.haml (1.3ms)
+  [1m[36mPatient Load (0.2ms)[0m  [1mSELECT `patients`.* FROM `patients` INNER JOIN `locations` ON `patients`.`id` = `locations`.`patient_id` WHERE `locations`.`hospital_id` = 1 AND (`patients`.`workflow_state` != 'leave')[0m
+  [1m[35mDoctor Load (0.2ms)[0m  SELECT `doctors`.* FROM `doctors`  WHERE `doctors`.`cureable_id` = 1 AND `doctors`.`cureable_type` = 'Hospital'
+  [1m[36mPatient Load (0.2ms)[0m  [1mSELECT `patients`.* FROM `patients` INNER JOIN `locations` ON `patients`.`id` = `locations`.`patient_id` WHERE `locations`.`hospital_id` = 1 AND `patients`.`workflow_state` = 'leave'[0m
+  Rendered hospitals/_past_patients.html.haml (1.8ms)
+  Rendered hospitals/show.html.haml within layouts/application (12.8ms)
+Completed 200 OK in 26ms (Views: 22.4ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/hospitals/1/patients/1" for 127.0.0.1 at 2014-06-07 03:25:20 -0400
+Processing by PatientsController#show as HTML
+  Parameters: {"hospital_id"=>"1", "id"=>"1"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1  ORDER BY `users`.`id` ASC LIMIT 1
+  [1m[36mHospital Load (0.2ms)[0m  [1mSELECT  `hospitals`.* FROM `hospitals`  WHERE `hospitals`.`id` = 1 LIMIT 1[0m
+  [1m[35mPatient Load (0.3ms)[0m  SELECT  `patients`.* FROM `patients` INNER JOIN `locations` ON `patients`.`id` = `locations`.`patient_id` WHERE `locations`.`hospital_id` = 1 AND `patients`.`id` = 1 LIMIT 1
+  [1m[36mMed Load (0.2ms)[0m  [1mSELECT `meds`.* FROM `meds`  WHERE `meds`.`patient_id` = 1[0m
+  [1m[35mHospital Load (0.2ms)[0m  SELECT `hospitals`.* FROM `hospitals` INNER JOIN `locations` ON `hospitals`.`id` = `locations`.`hospital_id` WHERE `locations`.`patient_id` = 1
+  [1m[36mDoctor Load (0.1ms)[0m  [1mSELECT `doctors`.* FROM `doctors`  WHERE `doctors`.`cureable_id` = 1 AND `doctors`.`cureable_type` = 'Patient'[0m
+  Rendered patients/show.html.haml within layouts/application (5.7ms)
+Completed 200 OK in 21ms (Views: 11.6ms | ActiveRecord: 2.8ms)
+
+
+Started GET "/hospitals/1/patients/1/doctor" for 127.0.0.1 at 2014-06-07 03:25:22 -0400
+Processing by PatientsController#doctor as HTML
+  Parameters: {"hospital_id"=>"1", "id"=>"1"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1  ORDER BY `users`.`id` ASC LIMIT 1
+  [1m[36mHospital Load (0.2ms)[0m  [1mSELECT  `hospitals`.* FROM `hospitals`  WHERE `hospitals`.`id` = 1 LIMIT 1[0m
+  [1m[35mPatient Load (0.3ms)[0m  SELECT  `patients`.* FROM `patients` INNER JOIN `locations` ON `patients`.`id` = `locations`.`patient_id` WHERE `locations`.`hospital_id` = 1 AND `patients`.`id` = 1 LIMIT 1
+  Rendered patients/doctor.html.haml within layouts/application (3.1ms)
+Completed 200 OK in 17ms (Views: 9.7ms | ActiveRecord: 1.2ms)
+
+
+Started POST "/hospitals/1/patients/1/add_doctor" for 127.0.0.1 at 2014-06-07 03:25:26 -0400
+Processing by PatientsController#add_doctor as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"OsvlUw6AafSB5cLiIPoP7vq55m5cfjlxB6nw572AXh8=", "doctor"=>{"name"=>"Me"}, "commit"=>"Create Doctor", "hospital_id"=>"1", "id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1  ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35mHospital Load (0.1ms)[0m  SELECT  `hospitals`.* FROM `hospitals`  WHERE `hospitals`.`id` = 1 LIMIT 1
+  [1m[36mPatient Load (0.2ms)[0m  [1mSELECT  `patients`.* FROM `patients` INNER JOIN `locations` ON `patients`.`id` = `locations`.`patient_id` WHERE `locations`.`hospital_id` = 1 AND `patients`.`id` = 1 LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO `doctors` (`created_at`, `cureable_id`, `cureable_type`, `name`, `updated_at`) VALUES ('2014-06-07 07:25:26', 1, 'Patient', 'Me', '2014-06-07 07:25:26')[0m
+  [1m[35m (6.1ms)[0m  COMMIT
+Redirected to http://localhost:3001/hospitals/1/patients/1
+Completed 302 Found in 11ms (ActiveRecord: 6.9ms)
+
+
+Started GET "/hospitals/1/patients/1" for 127.0.0.1 at 2014-06-07 03:25:26 -0400
+Processing by PatientsController#show as HTML
+  Parameters: {"hospital_id"=>"1", "id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1  ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35mHospital Load (0.2ms)[0m  SELECT  `hospitals`.* FROM `hospitals`  WHERE `hospitals`.`id` = 1 LIMIT 1
+  [1m[36mPatient Load (0.2ms)[0m  [1mSELECT  `patients`.* FROM `patients` INNER JOIN `locations` ON `patients`.`id` = `locations`.`patient_id` WHERE `locations`.`hospital_id` = 1 AND `patients`.`id` = 1 LIMIT 1[0m
+  [1m[35mMed Load (0.2ms)[0m  SELECT `meds`.* FROM `meds`  WHERE `meds`.`patient_id` = 1
+  [1m[36mHospital Load (0.2ms)[0m  [1mSELECT `hospitals`.* FROM `hospitals` INNER JOIN `locations` ON `hospitals`.`id` = `locations`.`hospital_id` WHERE `locations`.`patient_id` = 1[0m
+  [1m[35mDoctor Load (0.1ms)[0m  SELECT `doctors`.* FROM `doctors`  WHERE `doctors`.`cureable_id` = 1 AND `doctors`.`cureable_type` = 'Patient'
+  Rendered patients/show.html.haml within layouts/application (5.8ms)
+Completed 200 OK in 16ms (Views: 11.9ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/hospitals/1/patients/1/meds/new" for 127.0.0.1 at 2014-06-07 03:25:28 -0400
+Processing by MedsController#new as HTML
+  Parameters: {"hospital_id"=>"1", "patient_id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1  ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35mHospital Load (0.2ms)[0m  SELECT  `hospitals`.* FROM `hospitals`  WHERE `hospitals`.`id` = 1 LIMIT 1
+  [1m[36mPatient Load (0.2ms)[0m  [1mSELECT  `patients`.* FROM `patients` INNER JOIN `locations` ON `patients`.`id` = `locations`.`patient_id` WHERE `locations`.`hospital_id` = 1 AND `patients`.`id` = 1 LIMIT 1[0m
+  [1m[35mMed Load (0.2ms)[0m  SELECT `meds`.* FROM `meds`  WHERE `meds`.`patient_id` = 1
+  Rendered meds/_form.html.haml (4.5ms)
+  Rendered meds/new.html.haml within layouts/application (5.8ms)
+Completed 200 OK in 18ms (Views: 12.0ms | ActiveRecord: 1.2ms)
+
+
+Started POST "/hospitals/1/patients/1/meds" for 127.0.0.1 at 2014-06-07 03:25:31 -0400
+Processing by MedsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"OsvlUw6AafSB5cLiIPoP7vq55m5cfjlxB6nw572AXh8=", "med"=>{"name"=>"Adventure"}, "commit"=>"Create Med", "hospital_id"=>"1", "patient_id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1  ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35mHospital Load (0.1ms)[0m  SELECT  `hospitals`.* FROM `hospitals`  WHERE `hospitals`.`id` = 1 LIMIT 1
+  [1m[36mPatient Load (0.2ms)[0m  [1mSELECT  `patients`.* FROM `patients` INNER JOIN `locations` ON `patients`.`id` = `locations`.`patient_id` WHERE `locations`.`hospital_id` = 1 AND `patients`.`id` = 1 LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO `meds` (`created_at`, `name`, `patient_id`, `updated_at`) VALUES ('2014-06-07 07:25:31', 'Adventure', 1, '2014-06-07 07:25:31')[0m
+  [1m[35m (0.8ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+Redirected to http://localhost:3001/hospitals/1/patients/1
+Completed 302 Found in 6ms (ActiveRecord: 1.7ms)
+
+
+Started GET "/hospitals/1/patients/1" for 127.0.0.1 at 2014-06-07 03:25:31 -0400
+Processing by PatientsController#show as HTML
+  Parameters: {"hospital_id"=>"1", "id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1  ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35mHospital Load (0.1ms)[0m  SELECT  `hospitals`.* FROM `hospitals`  WHERE `hospitals`.`id` = 1 LIMIT 1
+  [1m[36mPatient Load (0.2ms)[0m  [1mSELECT  `patients`.* FROM `patients` INNER JOIN `locations` ON `patients`.`id` = `locations`.`patient_id` WHERE `locations`.`hospital_id` = 1 AND `patients`.`id` = 1 LIMIT 1[0m
+  [1m[35mMed Load (0.2ms)[0m  SELECT `meds`.* FROM `meds`  WHERE `meds`.`patient_id` = 1
+  [1m[36mHospital Load (0.1ms)[0m  [1mSELECT `hospitals`.* FROM `hospitals` INNER JOIN `locations` ON `hospitals`.`id` = `locations`.`hospital_id` WHERE `locations`.`patient_id` = 1[0m
+  [1m[35mDoctor Load (0.1ms)[0m  SELECT `doctors`.* FROM `doctors`  WHERE `doctors`.`cureable_id` = 1 AND `doctors`.`cureable_type` = 'Patient'
+  Rendered patients/show.html.haml within layouts/application (3.0ms)
+Completed 200 OK in 12ms (Views: 8.6ms | ActiveRecord: 0.9ms)
